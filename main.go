@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
@@ -14,7 +15,8 @@ func main() {
 	}
 	http.HandleFunc("/markdown", GenerateMarkdown)
 	http.Handle("/", http.FileServer(http.Dir("public")))
-	http.ListenAndServe(":"+port, nil)
+	fmt.Printf("Listen to port %s",port)
+    http.ListenAndServe(":"+port, nil)
 }
 
 func GenerateMarkdown(rw http.ResponseWriter, r *http.Request) {
